@@ -89,6 +89,7 @@
             type: 'success',
             message: 'get a resubmission link!'
           });
+          window.open('https:\\google.com', '_blank');
         }).catch(() => {
           this.$message({
             type: 'info',
