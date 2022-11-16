@@ -45,7 +45,7 @@
             width="150"
             label="Resubmit">
             <template slot-scope="scope">
-              <el-button v-if="isAuth('sys:user:update')" type="text" size="small" @click="addOrUpdateHandle(scope.row.userId)">request resubmission</el-button>
+              <el-button v-if="isAuth('sys:user:update')" type="text" size="small" @click="open(scope.row.userId)">request resubmission</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -78,6 +78,26 @@
               }]
             }
           },
+          methods: {
+            open() {
+                this.$confirm('Do you want a resubmission?', 'Alert', {
+          confirmButtonText: 'Yes',
+          cancelButtonText: 'No',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: 'get a resubmission link!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Cancel'
+          });          
+        });
+            }
+            },
+
         computed: {
         tokenNumber() {
             return 8
